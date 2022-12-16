@@ -1,0 +1,7 @@
+## Interface: 100002
+## Title: Auto-target in combat only
+## Author: Phobos927
+## Version: 10.0.2-04
+## SavedVariables: AutoTargetInCombatOnlyDB
+
+core.lua
