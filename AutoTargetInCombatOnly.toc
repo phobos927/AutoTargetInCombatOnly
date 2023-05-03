@@ -1,7 +1,7 @@
-## Interface: 100007
+## Interface: 100010
 ## Title: AutoTarget in combat only
 ## Author: Phobos927
-## Version: 10.0.7
+## Version: 10.1.0
 ## SavedVariables: hiddenTextDB
 
 core.lua
