@@ -13,27 +13,41 @@ holder:SetScript("OnEvent", function(self, event, arg1)
                 --
             else
                 print('AutoTarget ON')
+            end           
+            local k,v = "SoftTargetEnemy" v = GetCVar(k) SetCVar(k, 3) 
+            if (clearTargetDB == true) then
+                ClearTarget()
             end
-            ConsoleExec("SoftTargetEnemy 3")
         else
             if (hiddenTextDB == true) then
-               --
+                --
             else
                 print('AutoTarget OFF')
             end
-            ConsoleExec("SoftTargetEnemy 0")
+            local k,v = "SoftTargetEnemy" v = GetCVar(k) SetCVar(k, 0)                     
         end
     end
     if event == "ADDON_LOADED" and arg1 == "AutoTargetInCombatOnly" then
-        local myCheckbox = CreateFrame("CheckButton", "AutoTargetInCombatOnly_MyCheckbox", self,
+        local checkboxHideText = CreateFrame("CheckButton", "AutoTargetInCombatOnly_checkboxHideText", self,
             "InterfaceOptionsCheckButtonTemplate")
-        myCheckbox:SetPoint("TOPLEFT", 16, -16)
-        myCheckbox.Text:SetText("Hide notification in chat")
-        myCheckbox:SetChecked(hiddenTextDB)
-        -- myCheckbox.tooltipText = "description"
-        myCheckbox:SetScript("OnClick", function(self)
+        checkboxHideText:SetPoint("TOPLEFT", 16, -16)
+        checkboxHideText.Text:SetText("Hide notification in chat")
+        checkboxHideText:SetChecked(hiddenTextDB)
+        -- checkboxHideText.tooltipText = "description"
+        checkboxHideText:SetScript("OnClick", function(self)
             local isChecked = self:GetChecked()
             hiddenTextDB = isChecked
+        end)
+
+        local checkboxClearTarget = CreateFrame("CheckButton", "AutoTargetInCombatOnly_checkboxClearTarget", self,
+            "InterfaceOptionsCheckButtonTemplate")
+        checkboxClearTarget:SetPoint("TOPLEFT", 16, -40)
+        checkboxClearTarget.Text:SetText("Auto ClearTarget")
+        checkboxClearTarget:SetChecked(hiddenTextDB)
+        -- checkboxClearTarget.tooltipText = "description"
+        checkboxClearTarget:SetScript("OnClick", function(self)
+            local isChecked = self:GetChecked()
+            clearTargetDB = isChecked
         end)
 
         self.name = "AutoTargetInCombatOnly" -- see panel fields
@@ -45,5 +59,4 @@ holder:SetScript("OnEvent", function(self, event, arg1)
         title:SetText("AutoTargetInCombatOnly")
     end
 end)
-
 
